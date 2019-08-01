@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0;
+package com.example.retrofitcrud_client0.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,12 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.R;
+import com.example.retrofitcrud_client0.itils.BookDiffUtil;
+
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
 

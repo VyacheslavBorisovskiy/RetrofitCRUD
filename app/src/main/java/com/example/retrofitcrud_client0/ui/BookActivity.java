@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0;
+package com.example.retrofitcrud_client0.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.retrofitcrud_client0.itils.ApiUtils;
+import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.retrofit.BookInterface;
+import com.example.retrofitcrud_client0.R;
 import com.example.retrofitcrud_client0.mvp.bookActivity.ContractBookActivity;
 import com.example.retrofitcrud_client0.mvp.bookActivity.PresenterBookActivity;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class BookActivity extends AppCompatActivity implements ContractBookActivity.IBookView {
     BookInterface bookInterface;

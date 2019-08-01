@@ -3,9 +3,9 @@ package com.example.retrofitcrud_client0.mvp.mainActivity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.retrofitcrud_client0.Book;
-import com.example.retrofitcrud_client0.BookActivity;
-import com.example.retrofitcrud_client0.BookInterface;
+import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.ui.BookActivity;
+import com.example.retrofitcrud_client0.retrofit.BookInterface;
 import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity.IMainView;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PresenterMainActivity implements ContractMainActivity.IPresenter {
+public class PresenterMainActivity implements ContractMainActivity.IPresenterMainActivity {
 
     private IMainView view;
     private BookInterface bookInterface;

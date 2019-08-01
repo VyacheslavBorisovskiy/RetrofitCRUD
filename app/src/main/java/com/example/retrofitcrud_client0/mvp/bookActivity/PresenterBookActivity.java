@@ -1,7 +1,7 @@
 package com.example.retrofitcrud_client0.mvp.bookActivity;
 
-import com.example.retrofitcrud_client0.Book;
-import com.example.retrofitcrud_client0.BookInterface;
+import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.retrofit.BookInterface;
 import com.example.retrofitcrud_client0.mvp.bookActivity.ContractBookActivity.IBookView;
 
 import retrofit2.Call;

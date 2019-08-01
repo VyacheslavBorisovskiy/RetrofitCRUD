@@ -1,6 +1,6 @@
 package com.example.retrofitcrud_client0.mvp.bookActivity;
 
-import com.example.retrofitcrud_client0.Book;
+import com.example.retrofitcrud_client0.retrofit.Book;
 
 public interface ContractBookActivity {
 

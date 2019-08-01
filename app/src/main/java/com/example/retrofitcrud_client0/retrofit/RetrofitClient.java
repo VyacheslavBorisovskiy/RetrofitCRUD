@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0;
+package com.example.retrofitcrud_client0.retrofit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0;
+package com.example.retrofitcrud_client0.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,18 +8,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.retrofitcrud_client0.R;
+import com.example.retrofitcrud_client0.itils.ApiUtils;
 import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity;
+import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity.IPresenterMainActivity;
 import com.example.retrofitcrud_client0.mvp.mainActivity.PresenterMainActivity;
+import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.retrofit.BookInterface;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements ContractMainActivity.IMainView {
     Button btnAddBook;
     Button btnGetBookList;
-    BookInterface bookInterface;
+        BookInterface bookInterface;
     ArrayList<Book> listOfBooks = new ArrayList<>();
     RecyclerView recyclerView;
     RecycAdapter recycAdapter;
+//    @Inject
+//    IPresenterMainActivity presenter;
     PresenterMainActivity presenter;
 
     @Override

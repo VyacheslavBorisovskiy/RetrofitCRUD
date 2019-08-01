@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0;
+package com.example.retrofitcrud_client0.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
