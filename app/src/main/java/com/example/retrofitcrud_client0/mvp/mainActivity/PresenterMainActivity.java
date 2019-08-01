@@ -6,7 +6,7 @@ import android.content.Intent;
 import com.example.retrofitcrud_client0.Book;
 import com.example.retrofitcrud_client0.BookActivity;
 import com.example.retrofitcrud_client0.BookInterface;
-import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity.IView;
+import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity.IMainView;
 
 import java.util.ArrayList;
 
@@ -16,10 +16,10 @@ import retrofit2.Response;
 
 public class PresenterMainActivity implements ContractMainActivity.IPresenter {
 
-    private IView view;
+    private IMainView view;
     private BookInterface bookInterface;
 
-    public PresenterMainActivity(IView view, BookInterface bookInterface) {
+    public PresenterMainActivity(IMainView view, BookInterface bookInterface) {
         this.view = view;
         this.bookInterface = bookInterface;
     }
@@ -47,6 +47,6 @@ public class PresenterMainActivity implements ContractMainActivity.IPresenter {
     public void onStartActivity(Context context) {
         Intent intent = new Intent(context, BookActivity.class);
         intent.putExtra("bookName", "");
-        view.startActivity(intent);
+        view.readyToStartActivity(intent);
     }
 }

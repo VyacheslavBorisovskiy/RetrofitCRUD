@@ -13,7 +13,7 @@ import com.example.retrofitcrud_client0.mvp.mainActivity.PresenterMainActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ContractMainActivity.IView {
+public class MainActivity extends AppCompatActivity implements ContractMainActivity.IMainView {
     Button btnAddBook;
     Button btnGetBookList;
     BookInterface bookInterface;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements ContractMainActiv
 
 //                Intent intent = new Intent(MainActivity.this, BookActivity.class);
 //                intent.putExtra("bookName", "");
-//                startActivity(intent);
+//                readyToStartActivity(intent);
             }
         });
     }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements ContractMainActiv
     }
 
     @Override
-    public void startActivity(Intent intent) {
+    public void readyToStartActivity(Intent intent) {
         startActivity(intent);
     }
 

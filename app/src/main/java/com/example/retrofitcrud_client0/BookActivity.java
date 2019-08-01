@@ -1,17 +1,20 @@
 package com.example.retrofitcrud_client0;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.retrofitcrud_client0.mvp.bookActivity.ContractBookActivity;
+import com.example.retrofitcrud_client0.mvp.bookActivity.PresenterBookActivity;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookActivity extends AppCompatActivity {
+public class BookActivity extends AppCompatActivity implements ContractBookActivity.IBookView {
     BookInterface bookInterface;
     EditText editFormId;
     EditText editFormTitle;
@@ -20,6 +23,7 @@ public class BookActivity extends AppCompatActivity {
     EditText editFormPublishDate;
     Button buttonSave;
     Button buttonDelete;
+    PresenterBookActivity presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,9 @@ public class BookActivity extends AppCompatActivity {
         buttonSave = findViewById(R.id.buttonSave);
 
         bookInterface = ApiUtils.getBookInterface();
-        final Bundle extras = getIntent().getExtras();
+        presenter = new PresenterBookActivity(this, bookInterface);
+
+        final Bundle extras = this.getIntent().getExtras();
 
         final String bookId = String.valueOf(extras.getInt("id"));
         String title = extras.getString("title");
@@ -49,9 +55,9 @@ public class BookActivity extends AppCompatActivity {
         editFormDescription.setText(description);
         editFormPublishDate.setText(published + "");
 
-        if(bookId!=null && bookId.trim().length()>0){
+        if (bookId != null && bookId.trim().length() > 0) {
             editFormId.setFocusable(false);
-        } else{
+        } else {
             buttonDelete.setVisibility(View.INVISIBLE);
             editFormId.setVisibility(View.INVISIBLE);
         }
@@ -69,76 +75,79 @@ public class BookActivity extends AppCompatActivity {
                 book.setDescription(editFormDescription.getText().toString());
                 book.setPublished(Integer.parseInt(editFormPublishDate.getText().toString()));
 
-                if(bookId!=null && bookId.trim().length()>0&&(Integer.parseInt(bookId)!=0)){
-                    updateBook(Integer.parseInt(bookId), book);
-                } else{
-                    addBook(book);
+                if (bookId != null && bookId.trim().length() > 0 && (Integer.parseInt(bookId) != 0)) {
+                    presenter.updateBook(Integer.parseInt(bookId), book);
+                } else {
+                    presenter.addBook(book);
                 }
             }
         });
 
-        buttonDelete.setOnClickListener(new View.OnClickListener(){
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String userId = String.valueOf(extras.getInt("id"));
-                deleteBook(Integer.parseInt(userId));
+                presenter.deleteBook(Integer.parseInt(userId));
             }
         });
     }
 
-    public void addBook(Book book){
-        Call<Book> callBook = bookInterface.addBook(book);
-
-        callBook.enqueue(new Callback<Book>(){
-            @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(BookActivity.this, "Book created successfully!", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Book> call, Throwable t) {
-                Toast.makeText(BookActivity.this, "Book has not save!", Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public void showToast(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 
-    public void updateBook (final int id, final Book book){
-        Call<Book> callBook = bookInterface.updateBook(id, book);
-        callBook.enqueue(new Callback<Book>(){
-            @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(BookActivity.this, "Book updated successful! " + book.getId(), Toast.LENGTH_SHORT).show();
-                }
-            }
+//    public void addBook(Book book) {
+//        Call<Book> callBook = bookInterface.addBook(book);
+//        callBook.enqueue(new Callback<Book>() {
+//            @Override
+//            public void onResponse(Call<Book> call, Response<Book> response) {
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(BookActivity.this, "Book created successfully!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Book> call, Throwable t) {
+//                Toast.makeText(BookActivity.this, "Book has not save!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<Book> call, Throwable t) {
-                Toast.makeText(BookActivity.this, "Book update was unsuccesful!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    public void updateBook(final int id, final Book book) {
+//        Call<Book> callBook = bookInterface.updateBook(id, book);
+//        callBook.enqueue(new Callback<Book>() {
+//            @Override
+//            public void onResponse(Call<Book> call, Response<Book> response) {
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(BookActivity.this, "Book updated successful! " + book.getId(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Book> call, Throwable t) {
+//                Toast.makeText(BookActivity.this, "Book update was unsuccesful!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
-    public void deleteBook(final int id){
-        Call<Book> callBook = bookInterface.deleteBook(id);
-        System.out.println(id);
-        callBook.enqueue(new Callback<Book>(){
-            @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
-                if(response.isSuccessful()) {
-                    Toast.makeText(BookActivity.this, "Deletion was successful! " + id, Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(BookActivity.this, "Unsuccessful!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Toast.makeText(BookActivity.this, "Deletion was not executed!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    public void deleteBook(final int id) {
+//        Call<Book> callBook = bookInterface.deleteBook(id);
+//        System.out.println(id);
+//        callBook.enqueue(new Callback<Book>() {
+//            @Override
+//            public void onResponse(Call<Book> call, Response<Book> response) {
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(BookActivity.this, "Deletion was successful! " + id, Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(BookActivity.this, "Unsuccessful!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call call, Throwable t) {
+//                Toast.makeText(BookActivity.this, "Deletion was not executed!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }

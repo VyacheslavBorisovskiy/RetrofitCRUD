@@ -15,9 +15,9 @@ public interface ContractMainActivity {
         void onStartActivity(Context context);
     }
 
-    interface IView {
+    interface IMainView {
         void setData(ArrayList<Book> setBookList);
 
-        void startActivity(Intent intent);
+        void readyToStartActivity(Intent intent);
     }
 }
