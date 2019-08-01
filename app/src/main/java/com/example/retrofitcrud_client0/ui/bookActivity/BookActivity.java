@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0.ui;
+package com.example.retrofitcrud_client0.ui.bookActivity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.retrofitcrud_client0.itils.ApiUtils;
-import com.example.retrofitcrud_client0.retrofit.Book;
-import com.example.retrofitcrud_client0.retrofit.BookInterface;
 import com.example.retrofitcrud_client0.R;
-import com.example.retrofitcrud_client0.mvp.bookActivity.ContractBookActivity;
-import com.example.retrofitcrud_client0.mvp.bookActivity.PresenterBookActivity;
+import com.example.retrofitcrud_client0.api.Book;
+import com.example.retrofitcrud_client0.api.BookInterface;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 public class BookActivity extends AppCompatActivity implements ContractBookActivity.IBookView {
     BookInterface bookInterface;
@@ -23,10 +24,14 @@ public class BookActivity extends AppCompatActivity implements ContractBookActiv
     EditText editFormPublishDate;
     Button buttonSave;
     Button buttonDelete;
-    PresenterBookActivity presenter;
+    //    @Inject
+//    PresenterBookActivity presenter;
+    @Inject
+    ContractBookActivity.IPresenterBookActivity presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
@@ -38,8 +43,8 @@ public class BookActivity extends AppCompatActivity implements ContractBookActiv
         buttonDelete = findViewById(R.id.buttonDelete);
         buttonSave = findViewById(R.id.buttonSave);
 
-        bookInterface = ApiUtils.getBookInterface();
-        presenter = new PresenterBookActivity(this, bookInterface);
+//        bookInterface = ApiUtils.getBookInterface();
+//        presenter = new PresenterBookActivity(this, bookInterface);
 
         final Bundle extras = this.getIntent().getExtras();
 

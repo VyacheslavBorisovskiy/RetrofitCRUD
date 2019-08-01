@@ -1,9 +1,9 @@
-package com.example.retrofitcrud_client0.mvp.mainActivity;
+package com.example.retrofitcrud_client0.ui.mainActivity;
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.api.Book;
 
 import java.util.ArrayList;
 

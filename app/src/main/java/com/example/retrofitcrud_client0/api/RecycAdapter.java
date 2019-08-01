@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0.ui;
+package com.example.retrofitcrud_client0.api;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.retrofitcrud_client0.retrofit.Book;
 import com.example.retrofitcrud_client0.R;
-import com.example.retrofitcrud_client0.itils.BookDiffUtil;
+import com.example.retrofitcrud_client0.base.BookDiffUtil;
+import com.example.retrofitcrud_client0.ui.bookActivity.BookActivity;
+
 
 import java.util.ArrayList;
 

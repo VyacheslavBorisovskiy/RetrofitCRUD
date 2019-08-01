@@ -1,18 +1,24 @@
 package com.example.retrofitcrud_client0.di.modules;
 
-import com.example.retrofitcrud_client0.retrofit.BookInterface;
-import com.example.retrofitcrud_client0.ui.MainActivity;
-import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity.IPresenterMainActivity;
-import com.example.retrofitcrud_client0.mvp.mainActivity.PresenterMainActivity;
+import com.example.retrofitcrud_client0.ui.mainActivity.ContractMainActivity;
+import com.example.retrofitcrud_client0.ui.mainActivity.ContractMainActivity.IPresenterMainActivity;
+import com.example.retrofitcrud_client0.ui.mainActivity.MainActivity;
+import com.example.retrofitcrud_client0.ui.mainActivity.PresenterMainActivity;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
-public class PresenterModuleMainActivity {
+public interface PresenterModuleMainActivity {
 
-    @Provides
-    public static IPresenterMainActivity getPresenterMainActivity(MainActivity mainActivity, BookInterface bookInterface) {
-        return new PresenterMainActivity(mainActivity, bookInterface);
-    }
+//    @Provides
+//    public static IPresenterMainActivity getPresenterMainActivity(MainActivity mainActivity, BookInterface bookInterface) {
+//        return new PresenterMainActivity(mainActivity, bookInterface);
+//    }
+
+    @Binds
+    IPresenterMainActivity getPresenterMainActivity(PresenterMainActivity presenterMainActivity);
+
+    @Binds
+    ContractMainActivity.IMainView getIMainView(MainActivity mainActivity);
 }

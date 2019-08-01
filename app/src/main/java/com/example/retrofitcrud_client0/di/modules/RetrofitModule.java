@@ -1,6 +1,6 @@
 package com.example.retrofitcrud_client0.di.modules;
 
-import com.example.retrofitcrud_client0.retrofit.BookInterface;
+import com.example.retrofitcrud_client0.api.BookInterface;
 
 import dagger.Module;
 import dagger.Provides;

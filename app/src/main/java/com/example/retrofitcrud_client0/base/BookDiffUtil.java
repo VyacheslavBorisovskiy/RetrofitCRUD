@@ -1,9 +1,9 @@
-package com.example.retrofitcrud_client0.itils;
+package com.example.retrofitcrud_client0.base;
 
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 
-import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.api.Book;
 
 import java.util.ArrayList;
 

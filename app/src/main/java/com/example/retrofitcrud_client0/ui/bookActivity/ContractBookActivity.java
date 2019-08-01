@@ -1,10 +1,10 @@
-package com.example.retrofitcrud_client0.mvp.bookActivity;
+package com.example.retrofitcrud_client0.ui.bookActivity;
 
-import com.example.retrofitcrud_client0.retrofit.Book;
+import com.example.retrofitcrud_client0.api.Book;
 
 public interface ContractBookActivity {
 
-    interface IPresenter {
+    interface IPresenterBookActivity {
         void addBook(Book book);
 
         void updateBook(final int id, final Book book);

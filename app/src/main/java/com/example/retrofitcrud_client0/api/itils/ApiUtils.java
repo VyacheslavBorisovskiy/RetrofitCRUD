@@ -1,7 +1,7 @@
-package com.example.retrofitcrud_client0.itils;
+package com.example.retrofitcrud_client0.api.itils;
 
-import com.example.retrofitcrud_client0.retrofit.BookInterface;
-import com.example.retrofitcrud_client0.retrofit.RetrofitClient;
+import com.example.retrofitcrud_client0.api.BookInterface;
+import com.example.retrofitcrud_client0.api.RetrofitClient;
 
 public class ApiUtils {
     //    public static final String API_URL = "https://booksreact.herokuapp.com";

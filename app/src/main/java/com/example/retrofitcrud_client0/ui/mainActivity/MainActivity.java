@@ -1,4 +1,4 @@
-package com.example.retrofitcrud_client0.ui;
+package com.example.retrofitcrud_client0.ui.mainActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,34 +9,35 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.retrofitcrud_client0.R;
-import com.example.retrofitcrud_client0.itils.ApiUtils;
-import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity;
-import com.example.retrofitcrud_client0.mvp.mainActivity.ContractMainActivity.IPresenterMainActivity;
-import com.example.retrofitcrud_client0.mvp.mainActivity.PresenterMainActivity;
-import com.example.retrofitcrud_client0.retrofit.Book;
-import com.example.retrofitcrud_client0.retrofit.BookInterface;
+import com.example.retrofitcrud_client0.api.Book;
+import com.example.retrofitcrud_client0.api.BookInterface;
+import com.example.retrofitcrud_client0.api.RecycAdapter;
+import com.example.retrofitcrud_client0.ui.mainActivity.ContractMainActivity.IPresenterMainActivity;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 public class MainActivity extends AppCompatActivity implements ContractMainActivity.IMainView {
     Button btnAddBook;
     Button btnGetBookList;
-        BookInterface bookInterface;
+    BookInterface bookInterface;
     ArrayList<Book> listOfBooks = new ArrayList<>();
     RecyclerView recyclerView;
     RecycAdapter recycAdapter;
-//    @Inject
-//    IPresenterMainActivity presenter;
-    PresenterMainActivity presenter;
+    @Inject
+    IPresenterMainActivity presenter;
+//    PresenterMainActivity presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bookInterface = ApiUtils.getBookInterface();
-        presenter = new PresenterMainActivity(this, bookInterface);
+//        bookInterface = ApiUtils.getBookInterface();
+//        presenter = new PresenterMainActivity(this, bookInterface);
 
         btnAddBook = findViewById(R.id.btnAddBook);
         btnGetBookList = findViewById(R.id.btnGetBookList);

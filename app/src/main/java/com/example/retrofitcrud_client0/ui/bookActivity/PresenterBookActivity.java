@@ -1,18 +1,22 @@
-package com.example.retrofitcrud_client0.mvp.bookActivity;
+package com.example.retrofitcrud_client0.ui.bookActivity;
 
-import com.example.retrofitcrud_client0.retrofit.Book;
-import com.example.retrofitcrud_client0.retrofit.BookInterface;
-import com.example.retrofitcrud_client0.mvp.bookActivity.ContractBookActivity.IBookView;
+import com.example.retrofitcrud_client0.api.Book;
+import com.example.retrofitcrud_client0.api.BookInterface;
+import com.example.retrofitcrud_client0.ui.bookActivity.ContractBookActivity.IBookView;
 
+import javax.inject.Inject;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PresenterBookActivity implements ContractBookActivity.IPresenter {
+public class PresenterBookActivity implements ContractBookActivity.IPresenterBookActivity {
 
     private IBookView view;
     private BookInterface bookInterface;
 
+        @Inject
     public PresenterBookActivity(IBookView view, BookInterface bookInterface) {
         this.view = view;
         this.bookInterface = bookInterface;
@@ -61,24 +65,24 @@ public class PresenterBookActivity implements ContractBookActivity.IPresenter {
 
     @Override
     public void deleteBook(final int id) {
-        Call<Book> callBook = bookInterface.deleteBook(id);
+        Call<ResponseBody> callBook = bookInterface.deleteBook(id);
         System.out.println(id);
-        callBook.enqueue(new Callback<Book>() {
+        callBook.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 //                view.showToast(response.isSuccessful() ? "Deletion was successful! " : "Unsuccessful!");
-                if (response.isSuccessful()) {
+                if (response.body() != null) {
 //                    Toast.makeText(BookActivity.this, "Deletion was successful! " + id, Toast.LENGTH_SHORT).show();
-                    view.showToast("Deletion was successful! ");
+                    view.showToast(response.body().toString());
                 }
-//                else {
-////                    Toast.makeText(BookActivity.this, "Unsuccessful!", Toast.LENGTH_SHORT).show();
-//                    view.showToast("Unsuccessful!");
-//                }
+                else {
+//                    Toast.makeText(BookActivity.this, "Unsuccessful!", Toast.LENGTH_SHORT).show();
+                    view.showToast("Unsuccessful!");
+                }
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
 //                Toast.makeText(BookActivity.this, "Deletion was not executed!", Toast.LENGTH_SHORT).show();
                 view.showToast("Deletion was not executed!");
             }

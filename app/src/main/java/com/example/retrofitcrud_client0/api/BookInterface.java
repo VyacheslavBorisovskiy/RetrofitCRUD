@@ -1,10 +1,10 @@
-package com.example.retrofitcrud_client0.retrofit;
-
-import com.example.retrofitcrud_client0.retrofit.Book;
+package com.example.retrofitcrud_client0.api;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -27,5 +27,5 @@ public interface BookInterface {
     Call<Book> updateBook(@Path("id") int id, @Body Book book);
 
     @DELETE("/api/books/{id}")
-    Call<Book> deleteBook(@Path("id") int id);
+    Call<ResponseBody> deleteBook(@Path("id") int id);
 }
