@@ -5,12 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.retrofitcrud_fragments.ui.mainActivity.ContractMainActivity;
+
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class BaseMainActivity extends AppCompatActivity {//implements HasSupportFragmentInjector {
+public class BaseMainActivity extends AppCompatActivity  {//implements HasSupportFragmentInjector {
 
 
 

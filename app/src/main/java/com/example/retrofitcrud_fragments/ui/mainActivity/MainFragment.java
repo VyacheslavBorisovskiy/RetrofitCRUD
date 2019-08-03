@@ -17,11 +17,13 @@ import com.example.retrofitcrud_fragments.api.Book;
 import com.example.retrofitcrud_fragments.api.BookInterface;
 import com.example.retrofitcrud_fragments.api.RecycAdapter;
 import com.example.retrofitcrud_fragments.base.BaseMainFragment;
+import com.example.retrofitcrud_fragments.ui.FragmentNavigation;
 
 import java.util.ArrayList;
 
-public class MainFragment extends BaseMainFragment implements ContractMainFragment.IView {
+public class MainFragment extends BaseMainFragment implements ContractMainFragment.IView, FragmentNavigation.IView {
 
+    protected FragmentNavigation.IPresenterNavigation IPresenterNavigation;
     Button btnAddBook;
     Button btnGetBookList;
     ArrayList<Book> listOfBooks = new ArrayList<>();
@@ -36,6 +38,11 @@ public class MainFragment extends BaseMainFragment implements ContractMainFragme
 
     //    @Inject
     public MainFragment() {
+    }
+
+    @Override
+    public void attachPresenter(FragmentNavigation.IPresenterNavigation IPresenterNavigation) {
+        this.IPresenterNavigation = IPresenterNavigation;
     }
 
     @Override
@@ -113,11 +120,5 @@ public class MainFragment extends BaseMainFragment implements ContractMainFragme
         super.onStop();
     }
 
-    public interface StartActivityInterface {
-        void startBookActivity();
-    }
 
-    public interface GetBooksInterface {
-        void getBooks(BookInterface bookInterface);
-    }
 }

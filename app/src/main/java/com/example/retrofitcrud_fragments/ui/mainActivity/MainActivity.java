@@ -15,10 +15,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseMainActivity implements MainFragment.StartActivityInterface, MainFragment.GetBooksInterface {
+public class MainActivity extends BaseMainActivity implements ContractMainActivity.IView {// implements MainFragment.StartActivityInterface, MainFragment.GetBooksInterface {
 
     //    @Inject
     MainFragment mainFragment;
+    private ContractMainActivity.IPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +28,9 @@ public class MainActivity extends BaseMainActivity implements MainFragment.Start
 
         mainFragment = new MainFragment();
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, mainFragment)
-                .addToBackStack(null)
-                .commit();
+        presenter = new PresenterMainActivity()
+
+
     }
 
     @Override
@@ -49,8 +48,8 @@ public class MainActivity extends BaseMainActivity implements MainFragment.Start
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response) {
 //                if(response.isSuccessful()){
 //                if (view != null) {
-                    mainFragment.setData(response.body());
-                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! getBookList()");
+                mainFragment.setData(response.body());
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! getBookList()");
 //                }
 //                }
 //                view.setData(listOfBooks);
@@ -61,5 +60,15 @@ public class MainActivity extends BaseMainActivity implements MainFragment.Start
             public void onFailure(Call<ArrayList<Book>> call, Throwable t) {
             }
         });
+    }
+
+    @Override
+    public void setFragment(MainFragment mainFragment) {
+        mainFragment.attachPresenter(presenter);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, mainFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
